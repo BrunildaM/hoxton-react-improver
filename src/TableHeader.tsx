@@ -6,7 +6,7 @@ function TableHeader() {
                 Name
             </div>
             <div className="coin-data">
-            <p>Current price</p> 
+            <p>Current price $</p> 
            <p> Mkt Cap change24h</p> 
           <p>Mkt Cap change24h %</p> 
             <p className="coin-marketcap">Mkt Cap</p>

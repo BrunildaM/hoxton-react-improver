@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CoinCard from "./CoinCard";
 import Header from "./Header";
+import SearchInput from "./SearchInput";
 import TableHeader from "./TableHeader";
 
 export type Coin = {
@@ -53,11 +54,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <form>
-        <input className="coin-input" type="text" placeholder="Search for your fav Coin" onChange={filteredCoins => {
-          setSearch(filteredCoins.target.value)
-        }} />
-      </form>
+     < SearchInput  setSearch={setSearch}/>
 
       <TableHeader />
       
