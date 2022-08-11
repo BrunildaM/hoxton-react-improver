@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CoinCard from "./CoinCard";
 import Header from "./Header";
+import TableHeader from "./TableHeader";
 
 export type Coin = {
   id: string;
@@ -57,6 +58,8 @@ function App() {
           setSearch(filteredCoins.target.value)
         }} />
       </form>
+
+      <TableHeader />
       
       {filteredCoins.map(coin => 
         <CoinCard key={coin.id} coin= {coin}/>
