@@ -34,6 +34,7 @@ export type Coin = {
 
 function App() {
   const [coins, setCoins] = useState<Coin[]>([]);
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
@@ -41,10 +42,23 @@ function App() {
       .then((coinsFromApi) => setCoins(coinsFromApi));
   }, []);
 
+
+  const filteredCoins = coins.filter(coin=>
+    coin.name.toLowerCase().includes(search.toLowerCase())
+    )
+
+
+
   return (
     <div className="App">
       <Header />
-      {coins.map(coin => 
+      <form>
+        <input className="coin-input" type="text" placeholder="Search for your fav Coin" onChange={filteredCoins => {
+          setSearch(filteredCoins.target.value)
+        }} />
+      </form>
+      
+      {filteredCoins.map(coin => 
         <CoinCard key={coin.id} coin= {coin}/>
         )}
     </div>
