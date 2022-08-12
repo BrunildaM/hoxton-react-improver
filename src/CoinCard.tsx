@@ -3,9 +3,12 @@ import "./CoinCard.css";
 
 type Props = {
   coin: Coin;
+
 };
 
 function CoinCard({ coin }: Props) {
+
+    
   return (
     <div className="coin-container">
       <div className="coin-row">

@@ -1,4 +1,8 @@
+
+
 function TableHeader() {
+
+
     return (
         <div className="coin-container">
             <div className="coin-row">

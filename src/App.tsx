@@ -50,6 +50,10 @@ function App() {
     )
 
 
+   const decresingCoins= [...filteredCoins].sort((a, b) => b.current_price - a.current_price);
+    
+
+
 
   return (
     <div className="App">
@@ -57,8 +61,10 @@ function App() {
      < SearchInput  setSearch={setSearch}/>
 
       <TableHeader />
+
       
-      {filteredCoins.map(coin => 
+      
+      {decresingCoins.map(coin => 
         <CoinCard key={coin.id} coin= {coin}/>
         )}
     </div>
