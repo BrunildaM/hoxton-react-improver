@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import CoinCard from "./CoinCard";
-import Header from "./Header";
-import SearchInput from "./SearchInput";
-import TableHeader from "./TableHeader";
+import Home from "./Pages/Home";
+import { PageNotFound } from "./Pages/PageNotFound";
+import SignUp from "./Pages/SignUp";
 
 export type Coin = {
   id: string;
@@ -36,7 +36,7 @@ export type Coin = {
 
 function App() {
   const [coins, setCoins] = useState<Coin[]>([]);
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd")
@@ -44,32 +44,30 @@ function App() {
       .then((coinsFromApi) => setCoins(coinsFromApi));
   }, []);
 
-
-  const filteredCoins = coins.filter(coin=>
+  const filteredCoins = coins.filter((coin) =>
     coin.name.toLowerCase().includes(search.toLowerCase())
-    )
+  );
 
-
-   const decresingCoins= [...filteredCoins].sort((a, b) => b.current_price - a.current_price);
-    
-
-
+  const decresingCoins = [...filteredCoins].sort(
+    (a, b) => b.current_price - a.current_price
+  );
 
   return (
     <div className="App">
-      <Header />
-     < SearchInput  setSearch={setSearch}/>
+      <Routes>
+        <Route index element={<Navigate to="/home" />} />
+        <Route
+          path="/home"
+          element={
+            <Home setSearch={setSearch} decresingCoins={decresingCoins} />
+          }
+        />
+        <Route path="/signUp" element={<SignUp />} />
 
-      <TableHeader />
-
-      
-      
-      {decresingCoins.map(coin => 
-        <CoinCard key={coin.id} coin= {coin}/>
-        )}
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </div>
-  )
-  
+  );
 }
 
 export default App;

@@ -23,13 +23,16 @@
 }
 
 .coin-input{
+  display: grid;
+  margin-left: 320px;
   padding-left: 16px; 
-  width: auto;
   height: 50px;
   border-radius: 4px;
   border: none;
- background-color: black;
-color: #e2e2e2;
+  background-color: rgba(0, 0, 0, 0.379);
+  color: #e2e2e2;
+  
+
 }
 .coin-input::placeholder{
   color: #e2e2e2;
